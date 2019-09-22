@@ -7,6 +7,7 @@ Biopython:
 Python 3 installálása  
 Sudo apt install python3-pip
 Sudo Pip3 install biopython
+
 http://www.gabefoley.com/seqscrub/ segítségével a header sorok kiütése.
 
 Ki kell választani azt a mappát, ahol a kezelni kívánt file-ok vannak.
