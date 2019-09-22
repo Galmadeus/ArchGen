@@ -1,0 +1,21 @@
+from Bio.Blast import NCBIWWW
+from Bio.Blast import NCBIXML
+sequence=open("gammatest.fasta").read()
+result_handle = NCBIWWW.qblast("blastn", "nt", sequence, hitlist_size=2000)
+blast_records = NCBIXML.parse(result_handle) # if multiple blasts are there 
+save_result = open("results3.xml", "w")
+save_result.write(result_handle.read())
+save_result.close()
+result_handle.close()
+
+E_VALUE_THRESH = 1e-20
+for record in NCBIXML.parse(open("results3.xml")): 
+     if record.alignments: 
+        print("\n") 
+        print("query: %s" % record.query[:100]) 
+        for align in record.alignments: 
+           for hsp in align.hsps: 
+              if hsp.expect < E_VALUE_THRESH: 
+                 print("match: %s " % align.title[:100])
+
+
